@@ -91,7 +91,7 @@ class Server:
             break
 
         return {
-            "index": index if index else 0,
+            "index": index,
             "data": data_list,
             "next_index": next_index,
             "page_size": page_size
