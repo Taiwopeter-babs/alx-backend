@@ -46,6 +46,9 @@ class Server:
         """
         returns paginated items for a page
         """
+        lower_idx: int
+        upper_idx: int
+
         # Check arguments
         assert isinstance(page, int) and isinstance(page_size, int)
         assert page > 0 and page_size > 0

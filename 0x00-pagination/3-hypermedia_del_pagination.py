@@ -5,7 +5,7 @@ Deletion-resilient hypermedia pagination
 
 import csv
 import math
-from typing import Dict, List, Union
+from typing import Any, Dict, List, Union
 
 
 class Server:
@@ -39,16 +39,17 @@ class Server:
             }
         return self.__indexed_dataset
 
-    def get_hyper_index(self, index: int = None,
+    def get_hyper_index(self, index: Union[int, None] = None,
                         page_size: int = 10
                         ) -> Dict[str, Union[List[List], int]]:
         """
         Returns a hypermedia with the next available index,
         that persists with deletion of data
         """
-        next_index: int
-        # This can also be the index depending on availability of the index
-        # in storage
+        return_dict: Dict[str, Union[int, List[List[Any]]]] = {}
+        data_list: Union[List[List[Any]], None]
+        next_index: Union[int, None]
+        # Fallback index if next_index is None
         index_to_show: int
 
         if index is None:
@@ -90,9 +91,11 @@ class Server:
             next_index = probable_next_index
             break
 
-        return {
+        return_dict = {
             "index": index,
             "data": data_list,
             "next_index": next_index,
             "page_size": page_size
         }
+
+        return return_dict
