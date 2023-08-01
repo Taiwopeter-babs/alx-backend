@@ -17,9 +17,9 @@ users = {
 }
 
 
-def parse_language_header(header: str) -> str:
+def parse_language_header(header_str: str) -> str:
     """Processes the Accept-Language header"""
-    first_split = header.split(',')
+    first_split = header_str.split(',')
 
     # check if first preferred language needs parsing
     if '-' not in first_split[0]:
@@ -94,6 +94,7 @@ def simple_route() -> str:
     """A simple route"""
     home_title = 'Welcome to Holberton'
     home_header = 'Hello world!'
+
     return render_template(
         '6-index.html',
         home_title=home_title,
