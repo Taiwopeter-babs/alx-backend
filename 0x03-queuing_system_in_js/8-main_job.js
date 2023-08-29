@@ -1,6 +1,8 @@
-import kue from 'kue';
+const kue = require('kue');
 
-import createPushNotificationsJobs from './8-job.js';
+// import createPushNotificationsJobs from './8-job.js';
+
+const createPushNotificationsJobs = require('./8-job.js');
 
 const queue = kue.createQueue();
 
@@ -10,4 +12,4 @@ const list = [
     message: 'This is the code 1234 to verify your account'
   }
 ];
-createPushNotificationsJobs(list, queue);
+createPushNotificationsJobs('jobs', queue);

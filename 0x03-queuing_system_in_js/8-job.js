@@ -3,12 +3,12 @@
  * @param {*} jobs an array of objects
  * @param {*} queue a kue Queue instance
  */
-export default function createPushNotificationsJobs(jobs, queue) {
+module.exports = function createPushNotificationsJobs(jobs, queue) {
   if (!Array.isArray(jobs)) {
     throw new Error('Jobs is not an array');
   }
   for (let job of jobs) {
-    let jobToQueue = queue.create('push_notification_code_3', job)
+    const jobToQueue = queue.create('push_notification_code_3', job)
       .save(function (error) {
         if (!error) {
           console.log(`Notification job created: ${jobToQueue.id}`);
