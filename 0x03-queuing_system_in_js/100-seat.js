@@ -86,7 +86,7 @@ app.get('/reserve_seat', (req, res) => {
 app.get('/process', async (req, res) => {
   queue.process('reserve_seat', async (job, done) => {
     const currentAvailableSeats = await getCurrentAvailableSeats();
-    const newAvailableSeats = currentAvailableSeats - 1;
+    const newAvailableSeats = parseInt(currentAvailableSeats, 10) - 1;
     // set new number of seats
     reserveSeat(newAvailableSeats);
 
@@ -110,5 +110,5 @@ app.get('/process', async (req, res) => {
 app.listen(1245, () => {
   console.log('server is listening on port 1245');
   // === INTIALIZE available_seats
-  redisClient.set('available_seats', 50);
+  reserveSeat(50);
 });
