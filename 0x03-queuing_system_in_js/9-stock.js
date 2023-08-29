@@ -1,4 +1,3 @@
-const { rejects } = require('assert');
 const express = require('express');
 const { resolve } = require('path');
 const redis = require('redis');
